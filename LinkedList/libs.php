@@ -109,6 +109,24 @@ class LinkedList
 
     }
 
+    public function addElementAfterValue(mixed $afterValue, mixed $value): bool
+    {
+        $added = false;
+        $node = $this->head;
+        while($node) {
+            if ($node->value == $afterValue) {
+                $ref = &$node;
+                $next = $ref->next;
+                $ref->next = new Node($value, $next);
+                $added = true;
+                break;
+            }
+            $node = $node->next;
+        }
+
+        return $added;
+    }
+
     public function getLength(): int
     {
         $counter = 0;
