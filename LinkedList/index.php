@@ -37,6 +37,8 @@ echo $link->returnAsString() . "\n";
 $link->addElementAfterValue(23, 10);
 $link->addElementAfterValue(12, 11);
 $link->addElementAfterValue(11, 13);
+$link->removeElementAfterValue(12);
+$link->removeElement(12);
 // print
 echo $link->returnAsString() . "\n";
 echo $link->getLength() . "\n";

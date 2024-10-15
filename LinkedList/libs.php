@@ -46,6 +46,28 @@ class LinkedList
         $node->next = new Node($value, null);
     }
 
+    public function removeElement(mixed $value): bool
+    {
+        $removed = false;
+        $prev = null;
+        $node = $this->head;
+        while($node) {
+            if ($node->value == $value) {
+                if (is_null($prev)) {
+                    $this->head = $node->next;
+                } else {
+                    $prev->next = $node->next;
+                }
+                $removed = true;
+                break;
+            }
+            $prev = &$node;
+            $node = $node->next;
+        }
+
+        return $removed;
+    }
+
     public function removeElementAt(int $index): bool | Exception
     {
         // throw exception invalid index
@@ -125,6 +147,23 @@ class LinkedList
         }
 
         return $added;
+    }
+
+    public function removeElementAfterValue(mixed $afterValue): bool
+    {
+        $removed = false;
+        $node = $this->head;
+        while($node) {
+            if ($node->value == $afterValue) {
+                $ref = &$node;
+                $ref->next = $node->next->next;
+                $removed = true;
+                break;
+            }
+            $node = $node->next;
+        }
+
+        return $removed;
     }
 
     public function getLength(): int
