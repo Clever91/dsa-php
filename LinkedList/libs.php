@@ -66,10 +66,10 @@ class LinkedList
         $node = $this->head->next;
         while($node) {
             if ($node->value == $value) {
-                $prev = $node->next?->next;
+                $prev->next = $node->next;
                 return true;
             }
-            $prev = &$node;
+            $prev = $node;
             $node = $node->next;
         }
 
