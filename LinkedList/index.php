@@ -2,43 +2,76 @@
 
 include_once "libs.php";
 
-$data = [12, 23, 32, 12, 2, 43, 45];
-
-// ~~~~~~~~~~ Example One ~~~~~~~~~~
+// ~~~~~~~~~~ Example 1.0 ~~~~~~~~~~
+// $data = [1, 2, 3, 4, 5];
 // $link = new LinkedList($data);
-
-// // add element to linked list
-// $link->addElement("Last element 8");
-// $link->addElement("Last element 9");
-
-// // print
-// echo $link->returnAsString() . "\n";
 // echo $link->getLength() . "\n";
+// echo $link->returnAsString() . "\n";
 
-// if ($link->removeElementAt(index: 3)) {
-//     echo "deleted element index by 3 \n";
+// ~~~~~~~~~~ Example 1.1 ~~~~~~~~~~
+// $link = new LinkedList([]);
+// if ($link->addElement(1)) {
+//     echo "Added \n";
 // } else {
-//     echo "Not deleted element index by 3 \n";
+//     echo "Not added \n";
+// }
+// $link->addElement(2);
+// $link->addElement(3);
+// $link->addElement(4);
+// echo $link->returnAsString() . "\n";
+
+// ~~~~~~~~~~ Example 1.2 (BUG) ~~~~~~~~~~
+// $data = [1, 2, 3, 4, 5];
+// $link = new LinkedList($data);
+// echo $link->returnAsString() . "\n";
+// if ($link->removeElement(3)) {
+//     echo "Removed \n";
+// } else {
+//     echo "Not removed \n";
 // }
 // echo $link->returnAsString() . "\n";
-// echo $link->getLength() . "\n";
 
-// echo $link->addElementAt(3, "Five");
-// echo $link->addElementAt(3, "Four");
+// ~~~~~~~~~~ Example 1.3 ~~~~~~~~~~
+// $data = [1, 2, 3, 4, 5];
+// $link = new LinkedList($data);
 // echo $link->returnAsString() . "\n";
-// echo $link->getLength() . "\n";
+// if ($link->removeElementAt(2)) {
+//     echo "Removed \n";
+// } else {
+//     echo "Not removed \n";
+// }
+// echo $link->returnAsString() . "\n";
 
-// ~~~~~~~~~~ Example Two ~~~~~~~~~~
+// ~~~~~~~~~~ Example 1.4 ~~~~~~~~~~
+// $data = [1, 2, 3, 4, 5];
+// $link = new LinkedList($data);
+// echo $link->returnAsString() . "\n";
+// if ($link->addElementAt(0, 0)) {
+//     echo "Added \n";
+// } else {
+//     echo "Not added \n";
+// }
+// echo $link->returnAsString() . "\n";
 
-$link = new LinkedList($data);
-// print
-echo $link->returnAsString() . "\n";
-// add element
-$link->addElementAfterValue(23, 10);
-$link->addElementAfterValue(12, 11);
-$link->addElementAfterValue(11, 13);
-$link->removeElementAfterValue(12);
-$link->removeElement(12);
-// print
-echo $link->returnAsString() . "\n";
-echo $link->getLength() . "\n";
+// ~~~~~~~~~~ Example 1.5 ~~~~~~~~~~
+// $data = [1, 2, 4, 5];
+// $link = new LinkedList($data);
+// echo $link->returnAsString() . "\n";
+// if ($link->addElementAfterValue(2, 3)) {
+//     echo "Added \n";
+// } else {
+//     echo "Not added \n";
+// }
+// echo $link->returnAsString() . "\n";
+
+
+// ~~~~~~~~~~ Example 1.5 ~~~~~~~~~~
+// $data = [1, 2, 10, 3, 4];
+// $link = new LinkedList($data);
+// echo $link->returnAsString() . "\n";
+// if ($link->removeElementAfterValue(afterValue: 2)) {
+//     echo "Removed \n";
+// } else {
+//     echo "Not removed \n";
+// }
+// echo $link->returnAsString() . "\n";

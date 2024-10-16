@@ -14,7 +14,7 @@ class Node
 
 class LinkedList
 {
-    public mixed $head = null;
+    public ?Node $head = null;
 
     public function __construct(array $data = [])
     {
@@ -28,12 +28,12 @@ class LinkedList
         $this->head = new Node($value, $this->head);
     }
 
-    public function addElement(mixed $value): void
+    public function addElement(mixed $value): bool
     {
         // if it is first element, so just set a head
         if (is_null($this->head)) {
             $this->addElementToHead($value);
-            return;
+            return true;
         }
 
         // else we should find last element
@@ -44,28 +44,36 @@ class LinkedList
 
         // as a final, we can change last element
         $node->next = new Node($value, null);
+
+        return true;
     }
 
     public function removeElement(mixed $value): bool
     {
-        $removed = false;
-        $prev = null;
-        $node = $this->head;
+        // throw exception removing value at empty liked link
+        if (is_null($this->head)) {
+            throw new Exception("Linked Link is empty", 100);
+        }
+
+        // if it is empty, return false
+        if ($this->head->value == $value) {
+            $this->head = $this->head->next;
+            return true;
+        }
+
+        // find and remove element by value
+        $prev = $this->head;
+        $node = $this->head->next;
         while($node) {
             if ($node->value == $value) {
-                if (is_null($prev)) {
-                    $this->head = $node->next;
-                } else {
-                    $prev->next = $node->next;
-                }
-                $removed = true;
-                break;
+                $prev = $node->next?->next;
+                return true;
             }
             $prev = &$node;
             $node = $node->next;
         }
 
-        return $removed;
+        return false;
     }
 
     public function removeElementAt(int $index): bool | Exception
@@ -87,22 +95,22 @@ class LinkedList
         }
 
         // find and remove element at index
-        $counter = 0;
+        $counter = 1;
         $node = $this->head;
         while($node) {
-            $counter += 1;
             if ($counter == $index) {
                 $ref = &$node;
-                $ref->next = $node->next->next;
+                $ref->next = $node->next?->next;
                 break;
             }
             $node = $node->next;
+            $counter += 1;
         }
 
         return true;
     }
 
-    public function addElementAt(int $index, mixed $value): void
+    public function addElementAt(int $index, mixed $value): bool | Exception
     {
         // throw exception invalid index
         if ($index < 0 || $index > $this->getLength()) {
@@ -112,6 +120,7 @@ class LinkedList
         // checking if it is empty, add element to ehad
         if (is_null($this->head) || $index == 0) {
             $this->addElementToHead($value);
+            return true;
         }
         // else find and add element at given index 
         else {
@@ -122,48 +131,51 @@ class LinkedList
                     $ref = &$node;
                     $new  = new Node($value, $node->next);
                     $ref->next = $new;
-                    break;
+                    return true;
                 }
                 $counter += 1;
                 $node = $node->next;
             }
         }
 
+        return false;
     }
 
     public function addElementAfterValue(mixed $afterValue, mixed $value): bool
     {
-        $added = false;
+        // find and add element 
         $node = $this->head;
         while($node) {
             if ($node->value == $afterValue) {
                 $ref = &$node;
-                $next = $ref->next;
-                $ref->next = new Node($value, $next);
-                $added = true;
-                break;
+                $ref->next = new Node($value, $node->next);
+                return true;
             }
             $node = $node->next;
         }
 
-        return $added;
+        return false;
     }
 
     public function removeElementAfterValue(mixed $afterValue): bool
     {
-        $removed = false;
+        // throw exception removing value at empty liked link
+        if (is_null($this->head)) {
+            throw new Exception("Linked Link is empty", 100);
+        }
+
+        // find and remove value
         $node = $this->head;
         while($node) {
             if ($node->value == $afterValue) {
                 $ref = &$node;
-                $ref->next = $node->next->next;
-                $removed = true;
-                break;
+                $ref->next = $node->next?->next;
+                return true;
             }
             $node = $node->next;
         }
 
-        return $removed;
+        return false;
     }
 
     public function getLength(): int
