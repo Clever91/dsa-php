@@ -144,6 +144,11 @@ class LinkedList
 
     public function addElementAfterValue(mixed $afterValue, mixed $value): bool
     {
+        // throw exception removing value at empty liked link
+        if (is_null($this->head)) {
+            throw new Exception("Linked Link is empty", 100);
+        }
+        
         // find and add element 
         $node = $this->head;
         while($node) {
