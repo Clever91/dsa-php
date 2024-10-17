@@ -79,7 +79,7 @@ class LinkedList
     public function removeElementAt(int $index): bool | Exception
     {
         // throw exception invalid index
-        if ($index < 0 || $index > $this->getLength()) {
+        if ($index < 0 || $index >= $this->getLength()) {
             throw new Exception("The index is invalid", 100);
         }
 
@@ -99,8 +99,9 @@ class LinkedList
         $node = $this->head;
         while($node) {
             if ($counter == $index) {
-                $ref = &$node;
-                $ref->next = $node->next?->next;
+                // $ref = &$node;
+                // $ref->next = $node->next?->next;
+                $node->next = $node->next?->next;
                 break;
             }
             $node = $node->next;

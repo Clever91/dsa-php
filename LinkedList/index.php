@@ -35,7 +35,7 @@ include_once "libs.php";
 // $data = [1, 2, 3, 4, 5];
 // $link = new LinkedList($data);
 // echo $link->returnAsString() . "\n";
-// if ($link->removeElementAt(2)) {
+// if ($link->removeElementAt(index: 4)) {
 //     echo "Removed \n";
 // } else {
 //     echo "Not removed \n";
