@@ -2,6 +2,7 @@
 
 include_once "ArrayStack.php";
 
+// Example using ArrayStack
 $stack = new ArrayStack();
 $stack->push(12);
 echo "push 12 value \n";

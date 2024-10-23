@@ -1,6 +1,6 @@
 <?php
 
-include_once "libs.php";
+include_once "LinkedList.php";
 
 // ~~~~~~~~~~ Example 1.0 ~~~~~~~~~~
 // $data = [1, 2, 3, 4, 5];
