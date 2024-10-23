@@ -27,7 +27,7 @@ class Stack implements IStack
     public function pop(): mixed
     {
         if ($this->isEmpty()) {
-            throw new Exception("Stack is empty", 100);
+            throw new ValueError("Stack is empty", 100);
         }
 
         return array_pop($this->data);
@@ -35,7 +35,11 @@ class Stack implements IStack
 
     public function peek(): mixed
     {
-        return $this->data[0];
+        if ($this->isEmpty()) {
+            return null;
+        }
+
+        return $this->data[$this->length() - 1];
     }
 
     public function isEmpty(): bool

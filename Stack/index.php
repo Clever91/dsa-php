@@ -12,7 +12,7 @@ echo "push 14 value \n";
 echo $stack->display() . "\n";
 echo "pop last value: " . $stack->pop() . "\n";
 echo $stack->display() . "\n";
-echo "peek first value: " . $stack->peek() . "\n";
+echo "peek last value: " . $stack->peek() . "\n";
 echo $stack->display() . "\n";
 $stack->push(15);
 echo "push 15 value \n";
