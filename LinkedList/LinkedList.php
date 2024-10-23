@@ -101,6 +101,37 @@ class LinkedList
         return true;
     }
 
+    public function getElementAt(int $index): mixed
+    {
+        // throw exception invalid index
+        if ($index < 0 || $index >= $this->getLength()) {
+            throw new Exception("The index is invalid", 100);
+        }
+
+        // throw exception getting value empty liked link
+        if (is_null($this->head)) {
+            throw new Exception("Linked Link is empty", 100);
+        }
+
+        // return head
+        if ($index == 0) {
+            return $this->head->value;
+        }
+
+        // find and return element at index
+        $counter = 1;
+        $node = $this->head;
+        while($node) {
+            if ($counter == $index) {
+                return $node->next?->value;
+            }
+            $node = $node->next;
+            $counter += 1;
+        }
+
+        return null;
+    }
+
     public function addElementAt(int $index, mixed $value): bool | Exception
     {
         // throw exception invalid index
