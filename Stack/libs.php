@@ -35,11 +35,7 @@ class Stack implements IStack
 
     public function peek(): mixed
     {
-        if ($this->isEmpty()) {
-            throw new Exception("Stack is empty", 100);
-        }
-
-        return array_shift($this->data);
+        return $this->data[0];
     }
 
     public function isEmpty(): bool
