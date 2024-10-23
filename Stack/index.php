@@ -1,8 +1,8 @@
 <?php
 
-include_once "libs.php";
+include_once "ArrayStack.php";
 
-$stack = new Stack();
+$stack = new ArrayStack();
 $stack->push(12);
 echo "push 12 value \n";
 $stack->push(13);
