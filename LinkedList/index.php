@@ -75,3 +75,14 @@ include_once "LinkedList.php";
 //     echo "Not removed \n";
 // }
 // echo $link->returnAsString() . "\n";
+
+// ~~~~~~~~~ Example 2.0 ~~~~~~~~~
+include_once "./DoubleLinkList.php";
+
+$link = new DoubleLinkedList();
+$link->addNodeAtEnd(value: 10);
+echo $link->printForward() . "\n";
+$link->addNodeAtEnd(11);
+$link->addNodeAtEnd(12);
+echo $link->printForward() . "\n";
+echo $link->printBackward() . "\n";
