@@ -74,28 +74,28 @@ class LinkedHashMap implements IHashMap
     public function delete(mixed $key): void 
     {
         $index = $this->getHashIndex($key);
-        $head = $this->data[$index];
+        $node = $this->data[$index];
         $refNode = &$this->data[$index];
 
         // if it is empty
-        if (is_null($head)) {
+        if (is_null($node)) {
             return;
         }
 
         // checking head and delete it
-        if ($head->key == $key) {
-            $refNode = $head->next;
+        if ($node->key == $key) {
+            $refNode = $node->next;
             return;
         }
 
         // finding node and delete it
-        while($head->next) {
-            $next = $head->next;
+        while($node->next) {
+            $next = $node->next;
             if ($next->key == $key) {
-                $head->next = $next->next;
+                $node->next = $next->next;
                 return;
             }
-            $head = $head->next;
+            $node = $node->next;
         }
     }
 
