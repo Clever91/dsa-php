@@ -10,7 +10,7 @@ class ArrayHashMap implements IHashMap
     public function __construct(int $size)
     {
         $this->size = $size;
-        $this->data = array_fill(0, $size, null);
+        $this->data = array_fill(0, $size, []);
     }
 
     public function getHashIndex(mixed $key): int
@@ -25,19 +25,41 @@ class ArrayHashMap implements IHashMap
     public function put(mixed $key, mixed $value): void 
     {
         $index = $this->getHashIndex($key);
-        $this->data[$index] = $value;
+        if (!empty($this->data[$index])) {
+            foreach($this->data[$index] as &$pair) {
+                if ($pair[0] == $key) {
+                    $pair[1] = $value;
+                    return;
+                }
+            }
+        }
+        $this->data[$index][] = [$key, $value];
     }
     
     public function get(mixed $key): mixed
     {
         $index = $this->getHashIndex($key);
-        return $this->data[$index];
+        if (!empty($this->data[$index])) {
+            foreach($this->data[$index] as $pair) {
+                if ($pair[0] == $key) {
+                    return $pair[1];
+                }
+            }
+        }
+        return null;
     }
 
     public function delete(mixed $key): void 
     {
         $index = $this->getHashIndex($key);
-        $this->data[$index] = null;
+        if (!empty($this->data[$index])) {
+            foreach($this->data[$index] as $i => $pair) {
+                if ($pair[0] == $key) {
+                    unset($this->data[$index][$i]);
+                    return;
+                }
+            }
+        }
     }
 
     public function getItems(): array
