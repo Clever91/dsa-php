@@ -5,12 +5,11 @@ include_once "./IHashMap.php";
 class ArrayHashMap implements IHashMap
 {
     private array $data;
-    private int $size = 0;
+    private const MAX_SIZE = 10;
 
-    public function __construct(int $size)
+    public function __construct()
     {
-        $this->size = $size;
-        $this->data = array_fill(0, $size, []);
+        $this->data = array_fill(0, self::MAX_SIZE, []);
     }
 
     public function getHashIndex(mixed $key): int
@@ -19,7 +18,7 @@ class ArrayHashMap implements IHashMap
             throw new UnexpectedValueException("Invalid key", 100);
         }
 
-        return array_sum(array_map(function($char) { return ord($char); }, str_split($key))) % $this->size;
+        return array_sum(array_map(function($char) { return ord($char); }, str_split($key))) % self::MAX_SIZE;
     }
 
     public function put(mixed $key, mixed $value): void 
