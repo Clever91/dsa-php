@@ -1,6 +1,6 @@
 <?php
 
-include_once "./IHashMap.php";
+include_once __DIR__."/IHashMap.php";
 
 class ArrayHashMap implements IHashMap
 {
