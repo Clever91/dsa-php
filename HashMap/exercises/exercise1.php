@@ -8,12 +8,12 @@
  *      2. What was the maximum temperature in first 10 days of Jan
  */
 
- include_once "../ArrayHashMap.php";
+ include_once __DIR__."/../ArrayHashMap.php";
 
 function readCsvFile(): ArrayHashMap 
 {
     // open file for reading
-    $handle = fopen("../nyc_weather.csv", "r");
+    $handle = fopen(__DIR__."/nyc_weather.csv", "r");
     if ($handle === false) {
         die("file is not found");
     }

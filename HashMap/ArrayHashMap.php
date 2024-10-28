@@ -23,15 +23,21 @@ class ArrayHashMap implements IHashMap
 
     public function put(mixed $key, mixed $value): void 
     {
+        // getting index
         $index = $this->getHashIndex($key);
+
+        // checking exist in array
         if (!empty($this->data[$index])) {
             foreach($this->data[$index] as &$pair) {
+                // if exist, update
                 if ($pair[0] == $key) {
                     $pair[1] = $value;
                     return;
                 }
             }
         }
+        
+        // else create new once
         $this->data[$index][] = [$key, $value];
     }
     

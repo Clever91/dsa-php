@@ -13,7 +13,7 @@
 function readCsvFile(): ArrayHashMap 
 {
     // open file for reading
-    $handle = fopen("../nyc_weather.csv", "r");
+    $handle = fopen(__DIR__."/nyc_weather.csv", "r");
     if ($handle === false) {
         die("file is not found");
     }
