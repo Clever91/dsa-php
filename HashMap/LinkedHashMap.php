@@ -1,7 +1,7 @@
 <?php
 
-include_once "./IHashMap.php";
-include_once "./HashMapNode.php";
+include_once __DIR__ . "/IHashMap.php";
+include_once __DIR__ . "/HashMapNode.php";
 
 class LinkedHashMap implements IHashMap
 {
