@@ -4,9 +4,9 @@ include_once __DIR__ . "/ITreeNode.php";
 
 class TreeNode implements ITreeNode
 {
-    private mixed $value;
-    private ?ITreeNode $parent;
-    private array $children;
+    protected mixed $value;
+    protected ?ITreeNode $parent;
+    protected array $children;
 
     public function __construct(mixed $value, ?ITreeNode $parent)
     {
