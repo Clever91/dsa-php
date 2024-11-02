@@ -8,7 +8,7 @@ class TreeNode implements ITreeNode
     protected ?ITreeNode $parent;
     protected array $children;
 
-    public function __construct(mixed $value, ?ITreeNode $parent)
+    public function __construct(mixed $value, ?ITreeNode $parent = null)
     {
         $this->value = $value;
         $this->parent = $parent;
@@ -18,6 +18,9 @@ class TreeNode implements ITreeNode
 
     public function addChild(ITreeNode $child): void
     {
+        if (is_null($child->getParent())) {
+            $child->parent = $this;
+        }
         array_push($this->children, $child);
     }
 
@@ -36,8 +39,9 @@ class TreeNode implements ITreeNode
 
     public function printTree(): void
     {
-        $spaces = str_repeat("--", $this->getLevel());
-        if ($this->getLevel()) {
+        $level = $this->getLevel();
+        $spaces = str_repeat("--", $level);
+        if ($level != 0) {
             $spaces .= "|_";
         }
         echo "{$spaces}{$this->value}\n";
@@ -46,5 +50,10 @@ class TreeNode implements ITreeNode
                 $child->printTree();
             }
         }
+    }
+
+    public function getParent(): ITreeNode | null
+    {
+        return $this->parent;
     }
 }

@@ -20,8 +20,9 @@ class EmployeeTree extends TreeNode
 
     public function printTree($property = "all"): void
     {
-        $spaces = str_repeat("  ", $this->getLevel());
-        if ($this->getLevel()) {
+        $level = $this->getLevel();
+        $spaces = str_repeat("  ", $level);
+        if ($level != 0) {
             $spaces .= "|_";
         }
         if ($property == "all") {

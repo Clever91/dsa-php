@@ -6,4 +6,5 @@ interface ITreeNode
     public function addChild(ITreeNode $child): void;
     public function getLevel(): int;
     public function printTree(): void;
+    public function getParent(): ITreeNode | null;
 }
