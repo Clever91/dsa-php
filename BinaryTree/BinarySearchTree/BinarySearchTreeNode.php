@@ -89,4 +89,13 @@ class BinarySearchTreeNode implements IBinarySeachTreeNode
 
         return $result;
     }
+
+    public function findMin(): mixed
+    {
+        if ($this->left === null) {
+            return $this->value;
+        }
+
+        return $this->left->findMin();
+    }
 }

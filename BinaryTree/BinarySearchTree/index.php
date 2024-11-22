@@ -17,11 +17,16 @@ function buildBinarySearchTree(array $list): BinarySearchTreeNode
     return $root;
 }
 
-$list = [12, 2, 14, 10, 15, 1, 3];
-$root = buildBinarySearchTree($list);
+// $list = [12, 2, 14, 10, 15, 1, 3];
+// $root = buildBinarySearchTree($list);
 // var_dump($root);
 // var_dump($root->inOrderTraversal());
 
-var_dump($root->search(44));
-var_dump($root->search(14));
+// var_dump($root->search(44));
+// var_dump($root->search(14));
+
+$root = buildBinarySearchTree(["Abdurashid", "Sherzod", "Sardor", "Azizbek", "Aziz", "Abduhakim", "Jasur"]);
+echo "Min value: " . $root->findMin();
+echo "\n";
+echo "In order traversal: " . implode(", ", $root->inOrderTraversal()) . "\n";
 
