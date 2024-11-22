@@ -17,7 +17,11 @@ function buildBinarySearchTree(array $list): BinarySearchTreeNode
     return $root;
 }
 
-$list = [10, 9, 12, 14];
+$list = [12, 2, 14, 10, 15, 1, 3];
 $root = buildBinarySearchTree($list);
-var_dump($root);
+// var_dump($root);
+// var_dump($root->inOrderTraversal());
+
+var_dump($root->search(44));
+var_dump($root->search(14));
 

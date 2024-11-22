@@ -24,7 +24,7 @@ class BinarySearchTreeNode implements IBinarySeachTreeNode
 
         // if incoming value is less then current value 
         if ($value < $this->value) {
-            if (!is_null($this->left)) {
+            if ($this->left !== null) {
                 $this->left->addChild($value);
             } 
             // if left node is null, add new node
@@ -34,8 +34,8 @@ class BinarySearchTreeNode implements IBinarySeachTreeNode
         }
 
         // if incoming value is more then current value 
-        if ($value > $this->value) {
-            if (!is_null($this->right)) {
+        else if ($value > $this->value) {
+            if ($this->right !== null) {
                 $this->right->addChild($value);
             }
             // if right node is null, add new node
@@ -53,7 +53,7 @@ class BinarySearchTreeNode implements IBinarySeachTreeNode
         }
 
         // go to left node
-        if (is_null($this->left)) {
+        if ($this->left === null) {
             return false;
         }
         // if incoming value is less then current value 
@@ -62,7 +62,7 @@ class BinarySearchTreeNode implements IBinarySeachTreeNode
         }
 
         // go to right node
-        if (is_null($this->right)) {
+        if ($this->right === null) {
             return false;
         }
         // if incoming value is more then current value  
@@ -75,6 +75,18 @@ class BinarySearchTreeNode implements IBinarySeachTreeNode
 
     public function inOrderTraversal(): array
     {
-        return [];
+        $result = [];
+
+        if ($this->left !== null) {
+            $result = array_merge($result, $this->left->inOrderTraversal());
+        }
+
+        $result[] = $this->value;
+
+        if ($this->right !== null) {
+            $result = array_merge($result, $this->right->inOrderTraversal());
+        }
+
+        return $result;
     }
 }
