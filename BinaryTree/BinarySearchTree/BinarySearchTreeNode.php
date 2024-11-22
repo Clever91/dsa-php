@@ -90,6 +90,40 @@ class BinarySearchTreeNode implements IBinarySeachTreeNode
         return $result;
     }
 
+    public function preOrderTraversal(): array
+    {
+        $result = [];
+
+        $result[] = $this->value;
+
+        if ($this->left !== null) {
+            $result = array_merge($result, $this->left->preOrderTraversal());
+        }
+
+        if ($this->right !== null) {
+            $result = array_merge($result, $this->right->preOrderTraversal());
+        }
+
+        return $result;
+    }
+    
+    public function postOrderTraversal(): array
+    {
+        $result = [];
+
+        if ($this->left !== null) {
+            $result = array_merge($result, $this->left->postOrderTraversal());
+        }
+
+        if ($this->right !== null) {
+            $result = array_merge($result, $this->right->postOrderTraversal());
+        }
+
+        $result[] = $this->value;
+
+        return $result;
+    }
+
     public function findMin(): mixed
     {
         if ($this->left === null) {
@@ -97,5 +131,31 @@ class BinarySearchTreeNode implements IBinarySeachTreeNode
         }
 
         return $this->left->findMin();
+    }
+
+    public function findMax(): mixed
+    {
+        if ($this->right === null) {
+            return $this->value;
+        }
+
+        return $this->right->findMax();
+    }
+
+    public function calculateSum(): mixed
+    {
+        $sum = 0;
+
+        if ($this->left !== null) {
+            $sum += $this->left->calculateSum();
+        }
+
+        $sum += $this->value;
+
+        if ($this->right !== null) {
+            $sum += $this->right->calculateSum();
+        }
+
+        return $sum;
     }
 }
