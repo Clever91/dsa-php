@@ -52,22 +52,24 @@ class BinarySearchTreeNode implements IBinarySeachTreeNode
             return true;
         }
 
-        // go to left node
-        if ($this->left === null) {
-            return false;
-        }
+        
         // if incoming value is less then current value 
-        else if ($value < $this->value)  {
-            return $this->left->search($value);
-        }
-
-        // go to right node
-        if ($this->right === null) {
-            return false;
+        if ($value < $this->value)  {
+            // go to left node
+            if ($this->left === null) {
+                return false;
+            } else {
+                return $this->left->search($value);
+            }
         }
         // if incoming value is more then current value  
         else if ($value > $this->value) {
-            return $this->right->search($value);
+            // go to right node
+            if ($this->right === null) {
+                return false;
+            } else {
+                return $this->right->search($value);
+            }
         }
 
         return false;
