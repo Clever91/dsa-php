@@ -126,6 +126,32 @@ class BinarySearchTreeNode implements IBinarySeachTreeNode
         return $result;
     }
 
+    // there is bug
+    public function delete($value)
+    {
+        if ($value < $this->value) {
+            if ($this->left !== null) {
+                $this->left = $this->left->delete($value);
+            }
+        } else if ($value > $this->value) {
+            if ($this->right !== null) {
+                $this->right = $this->right->delete($value);
+            }
+        } else {
+            if ($this->right === null && $this->left === null) {
+                return null;
+            } else if ($this->right === null) {
+                return $this->left;
+            } else if ($this->left === null) {
+                return $this->right;
+            }
+
+            $maxValue = $this->left->findMax();
+            $this->value = $maxValue;
+            $this->left = $this->left->delete($maxValue);
+        }
+    }
+
     public function findMin(): mixed
     {
         if ($this->left === null) {

@@ -7,4 +7,5 @@ interface IBinarySeachTreeNode
     public function inOrderTraversal(): array;
     public function preOrderTraversal(): array;
     public function postOrderTraversal(): array;
+    public function delete($value);
 }
