@@ -26,7 +26,7 @@
     echo "Result is {$result} and {$functionName}'s execution time is {$diffTime} s.\n";
  }
 
-function linearSrearch($numbers, $lookingNumber): int
+function linearSearch($numbers, $lookingNumber): int
 {
     for ($i=0; $i < count($numbers); $i++) { 
         if ($lookingNumber == $numbers[$i]) {
@@ -39,6 +39,10 @@ function linearSrearch($numbers, $lookingNumber): int
 
 function binarySearch($numbers, $lookingNumber): int
 {
+    if (empty($numbers)) {
+        throw new Exception("Array is empty");
+    }
+
     $startIndex = 0;
     $endIndex = count($numbers) - 1;
     
@@ -50,7 +54,7 @@ function binarySearch($numbers, $lookingNumber): int
             return $midIndex;
         } else if ($midNumber < $lookingNumber) {
             $startIndex = $midIndex + 1;
-        } else if ($midNumber > $lookingNumber) {
+        } else {
             $endIndex = $midIndex - 1;
         }
     }
@@ -58,8 +62,12 @@ function binarySearch($numbers, $lookingNumber): int
     return -1;
 }
 
-function binary_search_recursive($numbers, $lookingNumber, $startIndex, $endIndex): int
+function binarySearchRecursive($numbers, $lookingNumber, $startIndex, $endIndex): int
 {
+    if (empty($numbers)) {
+        throw new Exception("Array is empty");
+    }
+    
     if ($startIndex > $endIndex) {
         return -1;
     }
@@ -72,17 +80,17 @@ function binary_search_recursive($numbers, $lookingNumber, $startIndex, $endInde
     }
 
     if ($midNumber > $lookingNumber) {
-        return binary_search_recursive($numbers, $lookingNumber, $startIndex, $midIndex - 1);
+        return binarySearchRecursive($numbers, $lookingNumber, $startIndex, $midIndex - 1);
     } else {
-        return binary_search_recursive($numbers, $lookingNumber, $midIndex + 1, $endIndex);
+        return binarySearchRecursive($numbers, $lookingNumber, $midIndex + 1, $endIndex);
     }
 }
 
 //  Test 001
 // $numbers = [1, 2, 34, 43, 65, 76, 78, 99, 100, 102, 130];
-// $lookingIndex = linearSrearch($numbers, 12);
+// $lookingIndex = linearSearch($numbers, 12);
 // echo "Looking 12 number is found at {$lookingIndex} index \n";
-// $lookingIndex = linearSrearch($numbers, 102);
+// $lookingIndex = linearSearch($numbers, 102);
 // echo "Looking 102 number is found at {$lookingIndex} index \n";
 // $lookingIndex = binarySearch($numbers, 12);
 // echo "BS: Looking 12 number is found at {$lookingIndex} index \n";
@@ -90,9 +98,10 @@ function binary_search_recursive($numbers, $lookingNumber, $startIndex, $endInde
 // echo "BS: Looking 102 number is found at {$lookingIndex} index \n";
 
 //  Test 002
-$numbers = [];
-for ($i=0; $i < 100000; $i++) { 
-    array_push($numbers, $i+10);
-}
-measureExecutionTime(   "binary_search_recursive", $numbers, 99999, 0, count($numbers) - 1);
-measureExecutionTime(   "binarySearch", $numbers, 99999);
+// $numbers = [];
+// for ($i=0; $i < 100000; $i++) { 
+//     array_push($numbers, $i+10);
+// }
+// measureExecutionTime(   "linearSearch", $numbers, 99999, 0, count($numbers) - 1);
+// measureExecutionTime(   "binarySearchRecursive", $numbers, 99999, 0, count($numbers) - 1);
+// measureExecutionTime(   "binarySearch", $numbers, 99999);
