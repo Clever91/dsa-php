@@ -60,12 +60,12 @@ function binarySearch($numbers, $lookingNumber): int
 
 function binary_search_recursive($numbers, $lookingNumber, $startIndex, $endIndex): int
 {
-    $midIndex = intval(($startIndex + $endIndex) / 2);
-    $midNumber = $numbers[$midIndex];
-
     if ($startIndex > $endIndex) {
         return -1;
     }
+
+    $midIndex = intval(($startIndex + $endIndex) / 2);
+    $midNumber = $numbers[$midIndex];
     
     if ($midNumber == $lookingNumber) {
         return $midIndex;
