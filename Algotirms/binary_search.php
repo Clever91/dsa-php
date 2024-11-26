@@ -23,7 +23,7 @@
     $endTime = microtime(true);
     $diffTime = ($endTime - $startTime) * 1000;
 
-    echo "{$functionName}'s execution time is {$diffTime} s.\n";
+    echo "Result is {$result} and {$functionName}'s execution time is {$diffTime} s.\n";
  }
 
 function linearSrearch($numbers, $lookingNumber): int
@@ -58,6 +58,26 @@ function binarySearch($numbers, $lookingNumber): int
     return -1;
 }
 
+function binary_search_recursive($numbers, $lookingNumber, $startIndex, $endIndex): int
+{
+    $midIndex = intval(($startIndex + $endIndex) / 2);
+    $midNumber = $numbers[$midIndex];
+
+    if ($startIndex > $endIndex) {
+        return -1;
+    }
+    
+    if ($midNumber == $lookingNumber) {
+        return $midIndex;
+    }
+
+    if ($midNumber > $lookingNumber) {
+        return binary_search_recursive($numbers, $lookingNumber, $startIndex, $midIndex - 1);
+    } else {
+        return binary_search_recursive($numbers, $lookingNumber, $midIndex + 1, $endIndex);
+    }
+}
+
 //  Test 001
 // $numbers = [1, 2, 34, 43, 65, 76, 78, 99, 100, 102, 130];
 // $lookingIndex = linearSrearch($numbers, 12);
@@ -74,5 +94,5 @@ $numbers = [];
 for ($i=0; $i < 100000; $i++) { 
     array_push($numbers, $i+10);
 }
-measureExecutionTime(   "linearSrearch", $numbers, 99999);
+measureExecutionTime(   "binary_search_recursive", $numbers, 99999, 0, count($numbers) - 1);
 measureExecutionTime(   "binarySearch", $numbers, 99999);
