@@ -39,6 +39,11 @@ function findOccuranceIndexes($numbers, $lookingNumber): string
     return implode(", ", $indexes);
 }
 
+function binarySearchOccuranceIndexes($numbers, $lookingNumber)
+{
+    // I have to write code find occurance indexed using binary search  
+}
+
 
 // test_001
 // $numbers = [1, 1, 2, 2, 3, 4, 5, 6, 7, 7, 7, 7, 7];
