@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "./utils.php";
+
 /**
  * 
  * Binary search is an efficient algorithm for finding the position of a target value within a **sorted array**. It works by repeatedly dividing the search range in half:
@@ -15,16 +17,6 @@
  * 
  * It is much faster than linear search for large datasets but requires the input to be sorted.
  */
-
- function measureExecutionTime(callable $functionName, ...$args)
- {
-    $startTime = microtime(true);
-    $result = $functionName(...$args);
-    $endTime = microtime(true);
-    $diffTime = ($endTime - $startTime) * 1000;
-
-    echo "Result is {$result} and {$functionName}'s execution time is {$diffTime} s.\n";
- }
 
 function linearSearch($numbers, $lookingNumber): int
 {
